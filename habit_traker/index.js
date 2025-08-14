@@ -9,7 +9,7 @@ import session from "express-session";
 //constants
 env.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const id = 1;
 app.use(express.static("public"));
 
@@ -38,7 +38,9 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/callback",
+      callbackURL:
+        process.env.GOOGLE_CALLBACK_URL ||
+        "http://localhost:3000/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -63,7 +65,10 @@ const db = new pg.Client({
   host: process.env.POSTGRES_HOST,
   database: process.env.POSTGRES_DATABASE,
   password: process.env.POSTGRES_PASSWORD,
-  url: process.env.POSTGRES_URL,
+  connectionString: process.env.POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 db.connect();
 function getYesterday(today) {
