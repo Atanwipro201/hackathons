@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>streaks</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+
+
+      <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .centered-note {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      color: #555;
+    }
+    .centered-note a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    .centered-note a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+<body>
+  <div class="min-h-28 cont">
+    <h1 class="text-3xl font-bold">Current streak: <strong><%= user.current_streak %></strong></h1>
+    <p>best streak:  <strong class=""><%= user.best_streak %></strong></p>
+    <form action="/addstreak" method="post">
+        <input type="hidden" id="id" name="id" value="<%= user.user_id %>" />
+        <button type="submit" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">add Streak</button>
+    </form>
+  </div>
+
+  <div class="centered-note">
+    <p>made by @aryan.tnf - 201projects</p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize the popover functionality
+      if (window.DavidAI) {
+        DavidAI.initPopovers();
+      } else {
+        console.error("DavidAI library not loaded.");
+      }
+    });
+  </script>
+
+</body>
+</html>
